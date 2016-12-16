@@ -83,15 +83,15 @@ cluster_logging: true
 cluster_monitoring: true
 
 # Turn to false to disable the kube-ui addon for this cluster
-kube_ui: false
+kube_ui: true
 
 # Turn to false to disable the kube-dash addon for this cluster
-kube_dash: false
+kube_dash: true
 
 # Turn this varable to 'false' to disable whole DNS configuration.
 dns_setup: true
 # How many replicas in the Replication Controller
-dns_replicas: 1
+dns_replicas: 3
 
 # There are other variable in roles/kubernetes/defaults/main.yml but changing
 # them comes with a much higher risk to your cluster. So proceed over there
