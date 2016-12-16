@@ -4,7 +4,7 @@
 {% set metrics_memory_per_node = 4 -%}
 {% set metrics_cpu_per_node = 0.5|float -%}
 {% set eventer_memory_per_node = 500 -%}
-{% set num_nodes = pillar.get('num_nodes', -1) -%}
+{% set num_nodes = 1 -%}
 {% set nanny_memory = "90Mi" -%}
 {% set nanny_memory_per_node = 200 -%}
 {% if num_nodes >= 0 -%}
