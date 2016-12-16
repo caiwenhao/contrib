@@ -27,7 +27,6 @@
     - reload systemd
   with_items:
     - apiserver
-    - config
     - scheduler
     - controller-manager
     - kubelet

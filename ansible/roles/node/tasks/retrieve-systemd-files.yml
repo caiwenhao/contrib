@@ -24,7 +24,6 @@
   notify:
     - reload systemd
   with_items:
-    - config
     - kubelet
     - proxy
   environment:
