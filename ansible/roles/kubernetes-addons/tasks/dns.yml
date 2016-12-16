@@ -13,3 +13,4 @@
   with_items:
   - kubedns-controller.yaml
   - kubedns-svc.yaml
+  - dns-horizontal-autoscaler.yaml
