@@ -12,7 +12,6 @@ KUBELET_HOSTNAME="--hostname-override={{ inventory_hostname }}"
 
 # location of the api-server
 KUBELET_API_SERVER="--api-servers=https://{{ groups['masters'][0] }}:{{ kube_master_api_port }}"
-KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image={{registry_hub}}/google_containers/pause-amd64:3.0"
 {% if kubelet_options is undefined -%}
 {% set kubelet_options = [] -%}
 {% endif -%}

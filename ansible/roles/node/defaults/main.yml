@@ -16,5 +16,5 @@ kube_node_rpms:
   - kubernetes-node
 
 # kubelet_options:
-#  - "--host-network-sources=*"
-#  - "--pod-infra-container-image=gcr.io/google_containers/pause:2.0"
+ # - "--host-network-sources=*"
+  - "--pod-infra-container-image={{registry_hub}}/google_containers/pause-amd64:3.0"
