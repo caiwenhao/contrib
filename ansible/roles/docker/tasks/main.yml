@@ -48,7 +48,6 @@
   lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-level=warn -g {{docker_root_dir}}"
   notify:
     - restart docker
-  when: docker_use_upstart
   tags: configure
 
 - name: Install http_proxy into docker(-network)
