@@ -45,7 +45,7 @@
   tags: install
 
 - name: Turn down docker logging
-  lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-level=warn -g {{docker_root_dir}}"
+  lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-driver=journald --signature-verification=false -g {{docker_root_dir}}"
   notify:
     - restart docker
   tags: configure
