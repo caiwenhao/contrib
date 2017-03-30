@@ -51,7 +51,7 @@ no_proxy: "127.0.0.1,localhost,10.10.185.222"
 # Kubernetes services will get fake IP addresses from this range.
 # This range must not conflict with anything in your infrastructure. These
 # addresses do not need to be routable and must just be an unused block of space.
-kube_service_addresses: 10.96.0.0/16
+kube_service_addresses: 10.254.0.0/16
 
 # Network implementation (flannel|opencontrail|contiv)
 networking: flannel
