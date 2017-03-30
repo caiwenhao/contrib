@@ -9,6 +9,10 @@
   file: path={{ docker_config_dir }} state=directory
   tags: install
 
+- name: Create docker_root file directory
+  file: path={{ docker_root_dir }} state=directory
+  tags: install
+
 - name: Install docker
   include: install.yml
   tags: install
@@ -41,7 +45,7 @@
   tags: install
 
 - name: Turn down docker logging
-  lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-level=warn"
+  lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-level=warn -g {{docker_root_dir}}"
   notify:
     - restart docker
   when: docker_use_upstart
@@ -74,6 +78,17 @@
   notify:
     - restart docker
   tags: configure
+
+- name: Create docker file directory
+  file: path="/root/.docker/" state=directory
+  tags: configure
+
+- name: Add registrys auth
+  template: src="config.json.j2" dest="/root/.docker/config.json" mode=600
+  notify:
+    - reload docker
+  tags: configure
+
 
 # The client version is enough for this deployment as the installer will always sync
 # client and server version.

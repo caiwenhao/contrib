@@ -1,5 +1,6 @@
 no_proxy: "localhost,127.0.0.0/8,::1,/var/run/docker.sock"
 docker_config_dir: "/etc/sysconfig"
+docker_root_dir: "/data/docker_root"
 
 # Set source of docker binaries
 # Available: package-manager, distribution-rpm, custom-repository
@@ -17,3 +18,4 @@ docker_rpms:
 - docker-selinux
 - docker-forward-journald
 - docker
+
