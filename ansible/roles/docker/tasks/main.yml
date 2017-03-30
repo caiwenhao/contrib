@@ -13,6 +13,17 @@
   file: path={{ docker_root_dir }} state=directory
   tags: install
 
+- name: delete /var/lib/docker
+  file: path={{ docker_root_dir }} state=absent
+  tags: install
+
+- name: ln /var/lib/docker
+  file: src={{ docker_root_dir }} dest=/var/lib/docker state=link
+  tags: install
+
+
+file: src=/file/to/link/to dest=/path/to/symlink owner=foo group=foo state=link
+
 - name: Install docker
   include: install.yml
   tags: install
@@ -45,9 +56,10 @@
   tags: install
 
 - name: Turn down docker logging
-  lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-driver=journald --signature-verification=false -g {{docker_root_dir}}"
+  lineinfile: dest={{ docker_config_dir }}/docker regexp=^OPTIONS= line=OPTIONS="--selinux-enabled --log-level=warn"
   notify:
     - restart docker
+  when: docker_use_upstart
   tags: configure
 
 - name: Install http_proxy into docker(-network)
