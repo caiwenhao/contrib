@@ -13,10 +13,6 @@
   file: path={{ docker_root_dir }} state=directory
   tags: install
 
-- name: delete /var/lib/docker
-  file: path={{ docker_root_dir }} state=absent
-  tags: install
-
 - name: ln /var/lib/docker
   file: src={{ docker_root_dir }} dest=/var/lib/docker state=link
   tags: install
