@@ -21,9 +21,6 @@
   file: src={{ docker_root_dir }} dest=/var/lib/docker state=link
   tags: install
 
-
-file: src=/file/to/link/to dest=/path/to/symlink owner=foo group=foo state=link
-
 - name: Install docker
   include: install.yml
   tags: install
