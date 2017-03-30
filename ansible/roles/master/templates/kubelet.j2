@@ -12,6 +12,6 @@ KUBELET_HOSTNAME="--hostname-override={{ inventory_hostname }}"
 
 # location of the api-server
 KUBELET_API_SERVER="--api-servers=http://localhost:{{ kube_master_insecure_port }}"
-
+KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image={{registry_hub}}/google_containers/pause-amd64:3.0"
 # Add your own!
 KUBELET_ARGS="--register-node=false --config={{ kube_manifest_dir }}"
