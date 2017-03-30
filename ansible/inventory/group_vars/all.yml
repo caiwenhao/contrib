@@ -40,8 +40,8 @@ dns_nameserver:
 #ansible_python_interpreter: "PATH=/opt/bin:$PATH python"
 
 # If you need a proxy for the docker daemon define these here
-http_proxy: "http://113.106.11.112:8128"
-https_proxy: "http://113.106.11.112:8128"
+http_proxy: "http://10.10.214.88:3128"
+https_proxy: "http://10.10.214.88:3128"
 no_proxy: "127.0.0.1,localhost,10.10.185.222"
 
 # Kubernetes internal network for services.
