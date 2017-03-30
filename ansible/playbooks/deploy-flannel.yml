@@ -1,0 +1,10 @@
+---
+# install flannel
+- hosts:
+    - masters
+    - nodes
+  become: yes
+  roles:
+    - { role: flannel, when: networking == 'flannel' }
+  tags:
+    - network-service-install
