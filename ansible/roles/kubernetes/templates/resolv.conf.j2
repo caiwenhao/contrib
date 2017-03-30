@@ -1,0 +1,6 @@
+search default.svc.cluster.local svc.cluster.local cluster.local
+options timeout:1 attempts:1 ndots:5
+nameserver {{dns_server}}
+{% for host in dns_nameserver %}
+nameserver {{host}}
+{% endfor %}
