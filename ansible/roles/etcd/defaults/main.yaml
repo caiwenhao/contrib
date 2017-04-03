@@ -7,7 +7,8 @@ etcd_conf_dir: /opt/kubernetes/cfg
 etcd_script_dir: /opt/kubernetes/bin
 etcd_data_dir: /var/lib/etcd
 
-etcd_download_url_base: "https://github.com/coreos/etcd/releases/download/v{{ etcd_version }}"
+#etcd_download_url_base: "https://github.com/coreos/etcd/releases/download/v{{ etcd_version }}"
+etcd_download_url_base: "https://okxzghmxw.bkt.clouddn.com/coreos/etcd/releases/download/v{{ etcd_version }}"
 etcd_download_url: "{{ etcd_download_url_base }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz"
 
 
