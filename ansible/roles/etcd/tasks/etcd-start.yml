@@ -1,4 +1,7 @@
 ---
+- name: reload systemd
+  command: systemctl daemon-reload
+
 - name: Enable etcd
   service: name=etcd enabled=yes
   when: etcd_enable == true
