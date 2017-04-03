@@ -1,5 +1,5 @@
 ---
-- stat: path={{ flannel_releases_dir }}/flannel-{{ flannel_version }}
+- stat: path={{ flannel_releases_dir }}/flanneld
   register: st
 
 - name: Download tar file
@@ -22,8 +22,8 @@
 
 - name: Create symlinks
   file:
-    src: "{{ flannel_releases_dir }}/flannel-{{ flannel_version }}/{{ item }}"
-    dest: "{{ bin_dir }}/{{ item }}"
+    src: "{{ flannel_releases_dir }}/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
     state: link
     force: yes
   with_items:
@@ -32,8 +32,3 @@
 
 - name: Setup systemd service
   include: systemd-service.yml
-  when: not flannel_use_upstart
-
-- name: Setup upstart service
-  include: upstart-service.yml
-  when: flannel_use_upstart

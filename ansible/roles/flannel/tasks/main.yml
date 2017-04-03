@@ -6,9 +6,6 @@
   include: client.yml
   when: inventory_hostname in groups['masters'] + groups['nodes']
 
-- include: ubuntu.yml
-  when: ansible_distribution == 'Ubuntu'
-
 - include: firewalld.yml
   when: has_firewalld
 

@@ -2,14 +2,15 @@
 # roles/etcd/defaults/main.yaml
 etcd_client_port: 2379
 # valid types: package | github-release
-flannel_source_type: package
+flannel_source_type: github-release
 
 # Directory to store downloaded flannel releases
 # (in case of using github-releases).
-flannel_releases_dir: /opt
+flannel_releases_dir: /opt/kubernetes/bin
+flannel_config_dir: /opt/kubernetes/cfg
 
 #flannel_version
-flannel_version: 0.5.5
+flannel_version: 0.7.0
 
 #The backend that flannel should use
 flannel_backend: vxlan
