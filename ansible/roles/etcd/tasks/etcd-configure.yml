@@ -1,6 +1,6 @@
 ---
 - name: Write etcd config file
-  template: src=etcd.conf.j2 dest="{{ etcd_conf_dir }}""/etcd.conf
+  template: src=etcd.conf.j2 dest="{{ etcd_conf_dir }}/etcd.conf"
 
 - name: Setting the etcd_modified fact to true
   set_fact:
