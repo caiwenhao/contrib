@@ -4,6 +4,7 @@
     url: "{{ etcd_download_url }}"
     dest: "{{ ansible_temp_dir }}"
     validate_certs: False
+    sha256sum: "60c47c25e79668adf435b035a374e58f7c035b4a75d5bb6259eb1a806c826487"
   environment:
     http_proxy: "{{ http_proxy|default('') }}"
     https_proxy: "{{ https_proxy|default('') }}"
