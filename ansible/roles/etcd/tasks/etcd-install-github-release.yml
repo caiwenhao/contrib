@@ -12,18 +12,18 @@
 - name: Extract tar file
   unarchive:
     src: "{{ ansible_temp_dir }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz"
-    dest: {{ ansible_temp_dir }}/
+    dest: "{{ ansible_temp_dir }}"/
     copy: no
 
 - name: copy etcd bin file
-  command: /bin/cp -a {{ ansible_temp_dir }}/etcd-v{{ etcd_version }}-linux-amd64/{{ item }} {{etcd_script_dir}}/
+  command: "/bin/cp -a {{ ansible_temp_dir }}/etcd-v{{ etcd_version }}-linux-amd64/{{ item }} {{etcd_script_dir}}/"
   with_items:
     - etcd
     - etcdctl
 
 - name: Create symlinks
   file:
-    src: {{etcd_script_dir}}/{{ item }}
+    src: "{{etcd_script_dir}}/{{ item }}"
     dest: /usr/local/bin/{{ item }}
     state: link
   with_items:
