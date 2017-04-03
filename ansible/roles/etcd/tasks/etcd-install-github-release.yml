@@ -21,6 +21,7 @@
 
 - name: copy etcd bin file
   command: "/bin/cp {{ ansible_temp_dir }}/etcd-v{{ etcd_version }}-linux-amd64/{{ item }} {{etcd_script_dir}}/"
+  ignore_errors: yes
   with_items:
     - etcd
     - etcdctl
