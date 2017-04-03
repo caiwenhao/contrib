@@ -28,9 +28,9 @@
     groups=etcd
   when: etcd_source_type == "github-release"
 
-- name: Ensure {{etcd_data_dir}} exists
+- name: Ensure "{{etcd_data_dir}}" exists
   file:
-    path={{etcd_data_dir}}
+    path="{{etcd_data_dir}}"
     recurse=yes
     state=directory
     owner=etcd

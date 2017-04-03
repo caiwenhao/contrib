@@ -6,7 +6,7 @@
   when: etcd_source_type == "package-manager"
 
 - name: Create etcd config directory
-  file: path={{ etcd_conf_dir }} state=directory
+  file: path="{{ etcd_conf_dir }}" state=directory
 
 - include: etcd-configure.yml
 
