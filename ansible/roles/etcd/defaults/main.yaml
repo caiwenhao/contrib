@@ -1,6 +1,15 @@
 ---
-etcd_source_type: "pass"
+
+# github-release package-manager
+etcd_source_type: "github-release"
 etcd_version: 3.1.0
+etcd_conf_dir: /opt/kubernetes/cfg
+etcd_script_dir: /opt/kubernetes/bin
+etcd_data_dir: /var/lib/etcd
+
+etcd_download_url_base: "https://github.com/coreos/etcd/releases/download/v{{ etcd_version }}"
+etcd_download_url: "{{ etcd_download_url_base }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz"
+
 
 etcd_client_port: 2379
 etcd_peer_port: 2380
@@ -16,8 +25,7 @@ etcd_peer_url_scheme: http
 etcd_client_cert_auth: false
 etcd_peer_client_cert_auth: false
 
-etcd_conf_dir: /etc/etcd
-etcd_script_dir: /usr/libexec/etcd
+
 etcd_ca_file: "{{ etcd_conf_dir }}/ca.crt"
 etcd_cert_file: "{{ etcd_conf_dir }}/server.crt"
 etcd_key_file: "{{ etcd_conf_dir }}/server.key"
@@ -45,10 +53,5 @@ etcd_listen_client_urls: "{{ etcd_url_scheme }}://0.0.0.0:{{ etcd_client_port }}
 etcd_listen_peer_legacy_urls: "{{ etcd_peer_url_scheme }}://0.0.0.0:{{ etcd_peer_port }},{{ etcd_peer_url_scheme }}://0.0.0.0:{{ etcd_peer_legacy_port }}"
 etcd_advertise_client_legacy_urls: "{{ etcd_url_scheme }}://{{ etcd_machine_address }}:{{ etcd_client_port }},{{ etcd_url_scheme }}://{{ etcd_machine_address }}:{{ etcd_client_legacy_port }}"
 etcd_listen_client_legacy_urls: "{{ etcd_url_scheme }}://0.0.0.0:{{ etcd_client_port }},{{ etcd_url_scheme }}://0.0.0.0:{{ etcd_client_legacy_port }}"
-
-etcd_data_dir: /var/lib/etcd
-
-etcd_download_url_base: "https://github.com/coreos/etcd/releases/download/v{{ etcd_version }}"
-etcd_download_url: "{{ etcd_download_url_base }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz"
 
 etcd_enable: true

@@ -4,10 +4,10 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/var/lib/etcd/
-EnvironmentFile=-/etc/etcd/etcd.conf
+WorkingDirectory={{etcd_data_dir}}
+EnvironmentFile=-{{etcd_conf_dir}}/etcd.conf
 User=etcd
-ExecStart=/usr/bin/etcd
+ExecStart=/usr/local/bin/etcd
 Restart=on-failure
 LimitNOFILE=65536
 
