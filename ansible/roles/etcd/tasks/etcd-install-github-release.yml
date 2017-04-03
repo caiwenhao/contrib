@@ -15,6 +15,9 @@
     dest: "{{ ansible_temp_dir }}/"
     copy: no
 
+- name: Create etcd config directory
+  file: path="{{ etcd_script_dir }}" state=directory
+
 - name: copy etcd bin file
   command: "/bin/cp -a {{ ansible_temp_dir }}/etcd-v{{ etcd_version }}-linux-amd64/{{ item }} {{etcd_script_dir}}/"
   with_items:
