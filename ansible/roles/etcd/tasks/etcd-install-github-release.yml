@@ -20,7 +20,7 @@
   file: path="{{ etcd_script_dir }}" state=directory
 
 - name: copy etcd bin file
-  command: "/bin/cp -a {{ ansible_temp_dir }}/etcd-v{{ etcd_version }}-linux-amd64/{{ item }} {{etcd_script_dir}}/"
+  command: "/bin/cp {{ ansible_temp_dir }}/etcd-v{{ etcd_version }}-linux-amd64/{{ item }} {{etcd_script_dir}}/"
   with_items:
     - etcd
     - etcdctl
