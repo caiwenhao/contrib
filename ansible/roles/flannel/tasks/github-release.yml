@@ -21,7 +21,7 @@
   when: st.stat.isdir is not defined
 
 - name: Write remove-docker0.sh file
-  copy: src=remove-docker0.sh dest="{{flannel_releases_dir}}/remove-docker0.sh mode=775"
+  copy: src=remove-docker0.sh dest="{{flannel_releases_dir}}/remove-docker0.sh" mode=775
 
 - name: Create symlinks
   file:
