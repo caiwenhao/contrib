@@ -23,8 +23,8 @@
 - name: Create config file directory
   file: path={{ item }} state=directory
   with_items:
-    - {{docker_config_dir}}
-    - {{docker_releases_dir}}
+    - "{{docker_config_dir}}"
+    - "{{docker_releases_dir}}"
 
 - name: copy etcd bin file
   command: "/bin/cp {{ ansible_temp_dir }}/docker/{{ item }} {{docker_releases_dir}}/"
