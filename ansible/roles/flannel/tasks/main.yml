@@ -17,6 +17,3 @@
 
 - name: Start flannel
   service: name=flannel state=started
-  register: flannel_started
-  notify:
-    - restart docker
