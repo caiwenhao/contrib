@@ -1,4 +1,4 @@
----
+ ---
 - name: Determine if Atomic
   stat: path=/run/ostree-booted
   register: os_tree_check

@@ -1,0 +1,7 @@
+---
+
+- name: Add docker Systemd Unit File
+  template: src=docker.service.j2 dest=/usr/lib/systemd/system/docker.service
+
+- name: reload systemd
+  command: systemctl daemon-reload

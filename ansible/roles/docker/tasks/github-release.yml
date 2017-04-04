@@ -1,0 +1,60 @@
+---
+- stat: path={{ docker_releases_dir }}/docker
+  register: st
+
+- name: Download tar file
+  get_url:
+    url: "{{ docker_download_url }}"
+    dest: "{{ ansible_temp_dir }}"
+    validate_certs: False
+  environment:
+    http_proxy: "{{ http_proxy|default('') }}"
+    https_proxy: "{{ https_proxy|default('') }}"
+    no_proxy: "{{ no_proxy|default('') }}"
+  when: st.stat.isdir is not defined
+
+- name: Extract tar file
+  unarchive:
+    src: "{{ ansible_temp_dir }}/docker-{{docker_version}}.tgz"
+    dest: "{{ ansible_temp_dir }}"
+    copy: no
+  when: st.stat.isdir is not defined
+
+- name: Create config file directory
+  file: path={{ item }} state=directory
+  with_items:
+    - {{docker_config_dir}}
+    - {{docker_releases_dir}}
+
+- name: copy etcd bin file
+  command: "/bin/cp {{ ansible_temp_dir }}/docker/{{ item }} {{docker_releases_dir}}/"
+  ignore_errors: yes
+  with_items:
+    - docker
+    - docker-containerd
+    - docker-containerd-ctr
+    - docker-containerd-shim
+    - dockerd
+    - docker-init
+    - docker-proxy
+    - docker-runc
+  when: st.stat.isdir is not defined
+
+- name: Create symlinks
+  file:
+    src: "{{ docker_releases_dir }}/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - docker
+    - docker-containerd
+    - docker-containerd-ctr
+    - docker-containerd-shim
+    - dockerd
+    - docker-init
+    - docker-proxy
+    - docker-runc
+
+- name: Setup systemd service
+  include: systemd-service.yml

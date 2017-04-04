@@ -1,0 +1,19 @@
+---
+
+
+- name: Create docker root directory
+  file: path="{{ docker_root_dir }}" state=directory
+
+- name: ln /var/lib/docker
+  file: src={{ docker_root_dir }} dest=/var/lib/docker state=link
+  tags: install
+
+- name: Create docker file directory
+  file: path="/root/.docker/" state=directory
+  tags: configure
+
+- name: Add registrys auth
+  template: src="config.json.j2" dest="/root/.docker/config.json" mode=600
+  notify:
+    - reload docker
+  tags: configure
