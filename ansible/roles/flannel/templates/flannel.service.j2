@@ -8,7 +8,7 @@ Type=notify
 EnvironmentFile={{flannel_config_dir}}/flannel
 ExecStartPre={{ flannel_releases_dir }}/remove-docker0.sh
 ExecStart={{ flannel_releases_dir }}/flanneld --ip-masq ${FLANNEL_ETCD} ${FLANNEL_ETCD_KEY} $FLANNEL_OPTIONS
-ExecStartPost=/opt/kubernetes/bin/mk-docker-opts.sh -d /run/flannel/docker
+ExecStartPost={{flannel_releases_dir}}/mk-docker-opts.sh -d /run/flannel/docker
 
 [Install]
 WantedBy=multi-user.target

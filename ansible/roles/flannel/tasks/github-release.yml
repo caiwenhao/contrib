@@ -20,6 +20,9 @@
     copy: no
   when: st.stat.isdir is not defined
 
+- name: Write remove-docker0.sh file
+  copy: src=remove-docker0.sh dest="{{flannel_releases_dir}}/remove-docker0.sh"
+
 - name: Create symlinks
   file:
     src: "{{ flannel_releases_dir }}/{{ item }}"
@@ -29,6 +32,7 @@
   with_items:
     - flanneld
     - mk-docker-opts.sh
+    - remove-docker0.sh
 
 - name: Setup systemd service
   include: systemd-service.yml
