@@ -2,6 +2,6 @@
 
 - name: Add Flannel Systemd Unit File
   template: src=flannel.service.j2 dest=/usr/lib/systemd/system/flannel.service
-  register: flannel_service
-  notify:
-    - reload systemd
+
+- name: reload systemd
+  command: systemctl daemon-reload
