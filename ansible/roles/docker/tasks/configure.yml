@@ -12,6 +12,14 @@
   file: path="/root/.docker/" state=directory
   tags: configure
 
+
+- name: Create docker config
+  template: src="docker.j2" dest="{{docker_config_dir}}/docker" mode=600
+  notify:
+    - reload docker
+  tags: configure
+
+
 - name: Add registrys auth
   template: src="config.json.j2" dest="/root/.docker/config.json" mode=600
   notify:
