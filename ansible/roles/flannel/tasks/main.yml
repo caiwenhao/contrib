@@ -13,10 +13,10 @@
   when: not has_firewalld and has_iptables
 
 - name: Enable flannel
-  service: name=flanneld enabled=yes
+  service: name=flannel enabled=yes
 
 - name: Start flannel
-  service: name=flanneld state=started
+  service: name=flannel state=started
   register: flannel_started
   notify:
     - restart docker
