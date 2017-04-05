@@ -1,6 +1,6 @@
 ---
 - name: Write the config files for proxy
-  template: src=proxy.j2 dest={{ kube_config_dir }}/kube-proxy
+  template: src=kube-proxy.j2 dest={{ kube_config_dir }}/kube-proxy
   notify:
     - restart proxy
 

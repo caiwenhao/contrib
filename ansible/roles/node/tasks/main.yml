@@ -22,7 +22,6 @@
 - name: Start proxy
   include: proxy-start.yml
 
-# Networking
 - include: firewalld.yml
   when: has_firewalld
   tags: configure
