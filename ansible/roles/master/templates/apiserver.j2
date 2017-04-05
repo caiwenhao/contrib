@@ -45,7 +45,7 @@ KUBE_API_CLIENT_CA_FILE="--client-ca-file={{kube_cert_dir}}/ca.crt"
 # concatenated after server cert). If HTTPS serving is enabled, and --tls-cert-file
 # and --tls-private-key-file are not provided, a self-signed certificate and key are
 # generated for the public address and saved to /var/run/kubernetes.
-KUBE_API_TLS_CERT_FILE="--tls-cert-file={{kube_cert_dir}}/server.cert"
+KUBE_API_TLS_CERT_FILE="--tls-cert-file={{kube_cert_dir}}/server.crt"
 
 # --tls-private-key-file="": File containing x509 private key matching --tls-cert-file.
 KUBE_API_TLS_PRIVATE_KEY_FILE="--tls-private-key-file={{kube_cert_dir}}/server.key"
