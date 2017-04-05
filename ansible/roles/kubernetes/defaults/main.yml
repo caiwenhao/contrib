@@ -11,7 +11,8 @@ kube_token_dir: "{{ kube_cert_dir }}/tokens"
 dns_domain: "{{ cluster_name }}"
 dns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(10)|ipaddr('address') }}"
 
-kube_download_ur: https://storage.googleapis.com/kubernetes-release/release/v${K8S_VERSION}/kubernetes-server-linux-amd64.tar.gz
+#kube_download_ur: https://storage.googleapis.com/kubernetes-release/release/v{{kube_version}}
+kube_download_ur: http//:10.10.119.24
 
 
 
