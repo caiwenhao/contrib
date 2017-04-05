@@ -3,7 +3,7 @@ Description=Kubernetes Controller Manager
 Documentation=https://github.com/kubernetes/kubernetes
 
 [Service]
-EnvironmentFile=-{{kube_config_dir}}/kube-controller-manager
+EnvironmentFile=-{{kube_config_dir}}/controller-manager
 ExecStart={{kube_script_dir}}/kube-controller-manager   ${KUBE_LOGTOSTDERR} \
                                 ${KUBE_LOG_LEVEL}   \
                                 ${KUBE_MASTER}      \
