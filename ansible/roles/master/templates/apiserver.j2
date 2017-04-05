@@ -1,26 +1,53 @@
-###
-# kubernetes system config
-#
-# The following values are used to configure the kube-apiserver
-#
+# --logtostderr=true: log to standard error instead of files
+KUBE_LOGTOSTDERR="--logtostderr=true"
 
-# The address on the local server to listen to.
-KUBE_API_ADDRESS="--insecure-bind-address={{ kube_apiserver_insecure_bind_address }}"
+# --v=0: log level for V logs
+KUBE_LOG_LEVEL="--v=4"
 
-# The port on the local server to listen on.
-KUBE_API_PORT="--secure-port={{ kube_master_api_port }}"
-
-# Port nodes listen on
-# KUBELET_PORT="--kubelet-port=10250"
-
-# Address range to use for services
-KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range={{ kube_service_addresses }}"
-
-# Location of the etcd cluster
+# --etcd-servers=[]: List of etcd servers to watch (http://ip:port),
+# comma separated. Mutually exclusive with -etcd-config
 KUBE_ETCD_SERVERS="--etcd-servers={% for node in groups['etcd'] %}http://{{ node }}:2379{% if not loop.last %},{% endif %}{% endfor %}"
 
-# default admission control policies
+# --insecure-bind-address=127.0.0.1: The IP address on which to serve the --insecure-port.
+KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0"
+
+# --insecure-port=8080: The port on which to serve unsecured, unauthenticated access.
+KUBE_API_PORT="--insecure-port={{kube_master_insecure_port}} --secure-port={{ kube_master_api_port }}"
+
+# --kubelet-port=10250: Kubelet port
+NODE_PORT="--kubelet-port=10250"
+
+# --advertise-address=<nil>: The IP address on which to advertise
+# the apiserver to members of the cluster.
+KUBE_ADVERTISE_ADDR="--advertise-address={{ansible_default_ipv4.address}}"
+
+# --allow-privileged=false: If true, allow privileged containers.
+KUBE_ALLOW_PRIV="--allow-privileged=false"
+
+# --service-cluster-ip-range=<nil>: A CIDR notation IP range from which to assign service cluster IPs.
+# This must not overlap with any IP ranges assigned to nodes for pods.
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range={{ kube_service_addresses }}"
+
+# --admission-control="AlwaysAdmit": Ordered list of plug-ins
+# to do admission control of resources into cluster.
+# Comma-delimited list of:
+#   LimitRanger, AlwaysDeny, SecurityContextDeny, NamespaceExists,
+#   NamespaceLifecycle, NamespaceAutoProvision, AlwaysAdmit,
+#   ServiceAccount, DefaultStorageClass, DefaultTolerationSeconds, ResourceQuota
 KUBE_ADMISSION_CONTROL="--admission-control={{ admission_controllers }}"
 
-# Add your own!
-KUBE_API_ARGS="{{ apiserver_extra_args | default('') }} --tls-cert-file={{ kube_cert_dir }}/server.crt --tls-private-key-file={{ kube_cert_dir }}/server.key --client-ca-file={{ kube_cert_dir }}/ca.crt --token-auth-file={{ kube_token_dir }}/known_tokens.csv --service-account-key-file={{ kube_cert_dir }}/server.crt --bind-address={{ kube_apiserver_bind_address }}"
+# --client-ca-file="": If set, any request presenting a client certificate signed
+# by one of the authorities in the client-ca-file is authenticated with an identity
+# corresponding to the CommonName of the client certificate.
+KUBE_API_CLIENT_CA_FILE="--client-ca-file={{kube_cert_dir}}/ca.crt"
+
+# --tls-cert-file="": File containing x509 Certificate for HTTPS.  (CA cert, if any,
+# concatenated after server cert). If HTTPS serving is enabled, and --tls-cert-file
+# and --tls-private-key-file are not provided, a self-signed certificate and key are
+# generated for the public address and saved to /var/run/kubernetes.
+KUBE_API_TLS_CERT_FILE="--tls-cert-file={{kube_cert_dir}}/server.cert"
+
+# --tls-private-key-file="": File containing x509 private key matching --tls-cert-file.
+KUBE_API_TLS_PRIVATE_KEY_FILE="--tls-private-key-file={{kube_cert_dir}}/server.key"
+
+#--token-auth-file=/srv/kubernetes/known_tokens.csv --kubelet-client-certificate=/srv/kubernetes/kubelet.crt --kubelet-client-key=/srv/kubernetes/kubelet.key

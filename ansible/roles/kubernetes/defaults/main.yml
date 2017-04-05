@@ -1,4 +1,4 @@
-kube_version: 1.6.0
+kube_version: 1.6.1
 kube_source_type: github-release
 kube_master_api_port: 6443
 kube_script_dir: /opt/kubernetes/bin
@@ -11,10 +11,9 @@ kube_token_dir: "{{ kube_config_dir }}/tokens"
 dns_domain: "{{ cluster_name }}"
 dns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(10)|ipaddr('address') }}"
 
+kube_download_ur: https://storage.googleapis.com/kubernetes-release/release/v${K8S_VERSION}/kubernetes-server-linux-amd64.tar.gz
 
 
-# The URL to download Kubernetes binaries from.
-kube_download_url_base: https://storage.googleapis.com/kubernetes-release/release/v{{ kube_version }}/bin/linux/amd64
 
 kube_releases_directory: /opt/kubernetes
 kube_current_release_directory: "{{ kube_releases_directory }}/{{ kube_version }}"

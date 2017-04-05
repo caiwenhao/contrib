@@ -1,7 +1,18 @@
 ###
 # kubernetes scheduler config
 
-# default config should be adequate
+# --logtostderr=true: log to standard error instead of files
+KUBE_LOGTOSTDERR="--logtostderr=true"
+
+# --v=0: log level for V logs
+KUBE_LOG_LEVEL="--v=4"
+
+KUBE_MASTER="--master=http://{{ groups['masters'][0] }}:{{ kube_master_insecure_port }}"
+
+# --leader-elect
+KUBE_LEADER_ELECT="--leader-elect"
 
 # Add your own!
 KUBE_SCHEDULER_ARGS="--kubeconfig={{ kube_config_dir }}/scheduler.kubeconfig"
+
+

@@ -1,0 +1,38 @@
+---
+- stat: path={{ kube_script_dir }}/kube-apiserver
+  register: st
+
+- name: Download tar file
+  get_url:
+    url: "{{ kube_download_ur }}"
+    dest: "{{ ansible_temp_dir }}"
+    validate_certs: False
+  environment:
+    http_proxy: "{{ http_proxy|default('') }}"
+    https_proxy: "{{ https_proxy|default('') }}"
+    no_proxy: "{{ no_proxy|default('') }}"
+  when: st.stat.isdir is not defined
+
+- name: Extract tar file
+  unarchive:
+    src: "{{ ansible_temp_dir }}/kubernetes-server-linux-amd64.tar.gz"
+    dest: "{{ ansible_temp_dir }}"
+    copy: no
+  when: st.stat.isdir is not defined
+
+- name: copy master bin file
+  command: "/bin/cp {{ ansible_temp_dir }}/kubernetes/server/bin/{{ item }} {{kube_script_dir}}/"
+  ignore_errors: yes
+  with_items: {{kube_master_binaries}}
+  when: st.stat.isdir is not defined
+
+- name: Create symlinks
+  file:
+    src: "{{ kube_script_dir }}/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+    force: yes
+  with_items: {{kube_master_binaries}}
+
+- name: Setup systemd service
+  include: systemd-service.yml

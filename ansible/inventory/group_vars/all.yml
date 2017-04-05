@@ -56,15 +56,6 @@ kube_service_addresses: 10.254.0.0/16
 # Network implementation (flannel|opencontrail|contiv)
 networking: flannel
 
-# External network
-# opencontrail_public_subnet: 10.1.4.0/24
-
-# Underlay network
-# opencontrail_private_subnet: 192.168.1.0/24
-
-# Data interface
-# opencontrail_interface: eth1
-
 # Flannel internal network (optional). When flannel is used, it will assign IP
 # addresses from this range to individual pods.
 # This network must be unused in your network infrastructure!
@@ -79,12 +70,6 @@ flannel_prefix: 12
 # will give to each node on your network.  With these defaults you should have
 # room for 4096 nodes with 254 pods per node.
 flannel_host_prefix: 24
-
-# Create a default Contiv network for providing connectivity among pods
-# networking: contiv must be set to use Contiv networking
-#contiv_default_network: true
-#contiv_default_subnet: 172.16.0.0/16
-#contiv_default_gw: 172.16.0.1
 
 # Set to false to disable logging with elasticsearch
 cluster_logging: true
