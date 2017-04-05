@@ -1,0 +1,9 @@
+---
+- name: Add k8s Systemd Unit File
+  template: src="{{ item }}.service.j2" dest="/usr/lib/systemd/system/{{ item }}.service"
+  with_items:
+    - kube-proxy
+    - kubelet
+
+- name: reload systemd
+  command: systemctl daemon-reload

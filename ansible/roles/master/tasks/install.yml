@@ -2,3 +2,5 @@
 
 - include: github-release.yml
 
+- name: Setup systemd service
+  include: systemd-service.yml

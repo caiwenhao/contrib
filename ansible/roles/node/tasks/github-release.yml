@@ -1,5 +1,5 @@
 ---
-- stat: path={{ kube_script_dir }}/kube-apiserver
+- stat: path={{ kube_script_dir }}/kubelet
   register: st
 
 - name: Download tar file
@@ -23,7 +23,7 @@
 - name: copy master bin file
   command: "/bin/cp {{ ansible_temp_dir }}/kubernetes/server/bin/{{ item }} {{kube_script_dir}}/"
   ignore_errors: yes
-  with_items: "{{kube_master_binaries}}"
+  with_items: "{{kube_node_binaries}}"
   when: st.stat.isdir is not defined
 
 - name: Create symlinks
@@ -32,5 +32,7 @@
     dest: "/usr/local/bin/{{ item }}"
     state: link
     force: yes
-  with_items: "{{kube_master_binaries}}"
+  with_items: "{{kube_node_binaries}}"
 
+- name: Setup systemd service
+  include: systemd-service.yml
