@@ -5,6 +5,7 @@ Documentation=https://github.com/kubernetes/kubernetes
 [Service]
 EnvironmentFile=-{{kube_config_dir}}/scheduler
 ExecStart={{kube_script_dir}}/kube-scheduler    ${KUBE_LOGTOSTDERR}     \
+                        ${LOG_DIR}              \
                         ${KUBE_LOG_LEVEL}       \
                         ${KUBE_MASTER}          \
                         ${KUBE_LEADER_ELECT}    \

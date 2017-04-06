@@ -16,6 +16,8 @@ dns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(10)|ipaddr('address'
 kube_download_ur: http://10.10.119.24/ansible
 
 
+kube_logs_directory: /data/logs/k8s
+
 
 kube_releases_directory: /opt/kubernetes
 kube_current_release_directory: "{{ kube_releases_directory }}/{{ kube_version }}"

@@ -1,5 +1,7 @@
-KUBE_LOGTOSTDERR="--logtostderr=true"
+KUBE_LOGTOSTDERR="--logtostderr=false"
+LOG_DIR="--log-dir={{kube_logs_directory}}"
 KUBE_LOG_LEVEL="--v=4"
+
 KUBE_MASTER="--master=http://{{ groups['masters'][0] }}:{{ kube_master_insecure_port }}"
 
 # --root-ca-file="": If set, this root certificate authority will be included in

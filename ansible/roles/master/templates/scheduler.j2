@@ -2,7 +2,8 @@
 # kubernetes scheduler config
 
 # --logtostderr=true: log to standard error instead of files
-KUBE_LOGTOSTDERR="--logtostderr=true"
+KUBE_LOGTOSTDERR="--logtostderr=false"
+LOG_DIR="--log-dir={{kube_logs_directory}}"
 
 # --v=0: log level for V logs
 KUBE_LOG_LEVEL="--v=4"
