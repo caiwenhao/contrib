@@ -6,6 +6,7 @@ Requires=docker.service
 [Service]
 EnvironmentFile=-{{kube_config_dir}}/kubelet
 ExecStart={{kube_script_dir}}/kubelet    ${KUBE_LOGTOSTDERR}     \
+                    ${LOG_DIR}              \
                     ${KUBE_LOG_LEVEL}       \
                     ${NODE_ADDRESS}         \
                     ${NODE_PORT}            \

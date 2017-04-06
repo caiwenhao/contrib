@@ -5,6 +5,7 @@ After=network.target
 [Service]
 EnvironmentFile=-{{kube_config_dir}}/kube-proxy
 ExecStart={{kube_script_dir}}/kube-proxy    ${KUBE_LOGTOSTDERR} \
+                    ${LOG_DIR}          \
                     ${KUBE_LOG_LEVEL}   \
                     ${NODE_HOSTNAME}    \
                     ${KUBE_MASTER}
