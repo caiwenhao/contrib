@@ -52,6 +52,6 @@ KUBE_API_TLS_CERT_FILE="--tls-cert-file={{kube_cert_dir}}/server.crt"
 KUBE_API_TLS_PRIVATE_KEY_FILE="--tls-private-key-file={{kube_cert_dir}}/server.key"
 
 
-KUBELET-CLIENT-CERTIFICATE="--kubelet-client-certificate={{kube_cert_dir}}/kubelet.crt"
-KUBELET-CLIENT-KEY="--kubelet-client-key={{kube_cert_dir}}/kubelet.key"
-TOKEN-AUTH-FILE="--token-auth-file={{kube_cert_dir}}/tokens/known_tokens.csv"
+KUBELET_CLIENT_CERTIFICATE="--kubelet-client-certificate={{kube_cert_dir}}/kubelet.crt"
+KUBELET_CLIENT_KEY="--kubelet-client-key={{kube_cert_dir}}/kubelet.key"
+TOKEN_AUTH_FILE="--token-auth-file={{kube_cert_dir}}/tokens/known_tokens.csv"
