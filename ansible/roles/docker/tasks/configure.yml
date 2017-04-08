@@ -14,6 +14,8 @@
 
 - name: Create docker config
   template: src="docker.j2" dest="{{docker_config_dir}}/docker" mode=600
+  notify:
+    - restart docker
   tags: configure
 
 - name: Add registrys auth
