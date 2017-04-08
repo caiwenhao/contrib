@@ -51,4 +51,7 @@ KUBE_API_TLS_CERT_FILE="--tls-cert-file={{kube_cert_dir}}/server.crt"
 # --tls-private-key-file="": File containing x509 private key matching --tls-cert-file.
 KUBE_API_TLS_PRIVATE_KEY_FILE="--tls-private-key-file={{kube_cert_dir}}/server.key"
 
-#--token-auth-file=/srv/kubernetes/known_tokens.csv --kubelet-client-certificate=/srv/kubernetes/kubelet.crt --kubelet-client-key=/srv/kubernetes/kubelet.key
+#--token-auth-file=/srv/kubernetes/known_tokens.csv
+
+KUBELET-CLIENT-CERTIFICATE="--kubelet-client-certificate={{kube_cert_dir}}/kubelet.crt"
+KUBELET-CLIENT-KEY="--kubelet-client-key={{kube_cert_dir}}/kubelet.key"

@@ -2,7 +2,7 @@ KUBE_LOGTOSTDERR="--logtostderr=false"
 LOG_DIR="--log-dir={{kube_logs_directory}}"
 KUBE_LOG_LEVEL="--v=4"
 
-KUBE_MASTER="--master=http://{{ groups['masters'][0] }}:{{ kube_master_insecure_port }}"
+KUBE_MASTER="--master=http://{{ groups['masters'][0] }}:{{ kube_master_api_port }}"
 
 # --root-ca-file="": If set, this root certificate authority will be included in
 # service account's token secret. This must be a valid PEM-encoded CA bundle.
@@ -15,4 +15,4 @@ KUBE_CONTROLLER_MANAGER_SERVICE_ACCOUNT_PRIVATE_KEY_FILE="--service-account-priv
 # --leader-elect
 KUBE_LEADER_ELECT="--leader-elect"
 
-#--kubeconfig={{ kube_config_dir }}/controller-manager.kubeconfig
+KUBECONFIG="--kubeconfig={{ kube_config_dir }}/controller-manager.kubeconfig"

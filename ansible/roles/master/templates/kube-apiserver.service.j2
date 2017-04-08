@@ -17,7 +17,9 @@ ExecStart={{kube_script_dir}}/kube-apiserver    ${KUBE_LOGTOSTDERR}         \
                         ${KUBE_ADMISSION_CONTROL}   \
                         ${KUBE_API_CLIENT_CA_FILE}  \
                         ${KUBE_API_TLS_CERT_FILE}   \
-                        ${KUBE_API_TLS_PRIVATE_KEY_FILE}
+                        ${KUBE_API_TLS_PRIVATE_KEY_FILE} \
+                        ${KUBELET-CLIENT-CERTIFICATE} \
+                        ${KUBELET-CLIENT-KEY}
 Restart=on-failure
 
 [Install]

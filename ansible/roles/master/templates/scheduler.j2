@@ -8,7 +8,7 @@ LOG_DIR="--log-dir={{kube_logs_directory}}"
 # --v=0: log level for V logs
 KUBE_LOG_LEVEL="--v=4"
 
-KUBE_MASTER="--master=http://{{ groups['masters'][0] }}:{{ kube_master_insecure_port }}"
+KUBE_MASTER="--master=http://{{ groups['masters'][0] }}:{{ kube_master_api_port }}"
 
 # --leader-elect
 KUBE_LEADER_ELECT="--leader-elect"
