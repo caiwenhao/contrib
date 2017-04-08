@@ -4,6 +4,8 @@
 
 - name: Write the config files for kubelet
   template: src=kubelet.j2 dest={{ kube_config_dir }}/kubelet
+  notify:
+    - restart kubelet
 
 - name: Write the kubecfg (auth) file for kubelet
   template: src=kubelet.kubeconfig.j2 dest={{ kube_config_dir }}/kubelet.kubeconfig

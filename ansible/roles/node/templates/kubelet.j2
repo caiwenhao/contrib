@@ -26,4 +26,4 @@ KUBELET__DNS_IP="--cluster-dns={{dns_server}}"
 KUBELET_DNS_DOMAIN="--cluster-domain={{dns_domain}}"
 
 # Add your own!
-KUBELET_ARGS=""
+KUBELET_ARGS="--pod-infra-container-image={{registry_hub}}/google_containers/pause-amd64:3.0"
