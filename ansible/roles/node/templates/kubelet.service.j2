@@ -14,7 +14,8 @@ ExecStart={{kube_script_dir}}/kubelet    ${KUBE_LOGTOSTDERR}     \
                     ${KUBELET_API_SERVER}   \
                     ${KUBE_ALLOW_PRIV}      \
                     ${KUBELET__DNS_IP}      \
-                    ${KUBELET_DNS_DOMAIN}      \
+                    ${KUBELET_DNS_DOMAIN}   \
+                    ${KUBECONFIG}           \
                     ${KUBELET_ARGS}
 Restart=on-failure
 KillMode=process

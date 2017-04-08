@@ -8,7 +8,8 @@ ExecStart={{kube_script_dir}}/kube-proxy    ${KUBE_LOGTOSTDERR} \
                     ${LOG_DIR}          \
                     ${KUBE_LOG_LEVEL}   \
                     ${NODE_HOSTNAME}    \
-                    ${KUBE_MASTER}
+                    ${KUBE_MASTER}      \
+                    ${KUBECONFIG}
 Restart=on-failure
 
 [Install]
