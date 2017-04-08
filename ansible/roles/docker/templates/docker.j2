@@ -2,6 +2,3 @@ DOCKER_OPTS="-H tcp://127.0.0.1:4243 -H unix:///var/run/docker.sock -s overlay -
 {% if insecure_registrys %}
 INSECURE_REGISTRY="{% for reg in insecure_registrys %}--insecure-registry={{ reg }} {% endfor %}"
 {% endif %}
-{% if http_proxy %}
-HTTP_PROXY={{http_proxy}}
-{% endif %}
