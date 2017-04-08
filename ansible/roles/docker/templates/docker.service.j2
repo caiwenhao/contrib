@@ -9,7 +9,10 @@ Type=notify
 EnvironmentFile=-/run/flannel/docker
 EnvironmentFile=-{{docker_config_dir}}/docker
 WorkingDirectory={{docker_releases_dir}}
-ExecStart={{docker_releases_dir}}/dockerd $DOCKER_OPT_BIP $DOCKER_OPT_MTU $DOCKER_OPTS
+ExecStart={{docker_releases_dir}}/dockerd $DOCKER_OPT_BIP \
+                                          $DOCKER_OPT_MTU \
+                                          $INSECURE_REGISTRY \
+                                          $DOCKER_OPTS
 LimitNOFILE=1048576
 LimitNPROC=1048576
 
