@@ -16,7 +16,7 @@
 set -e
 set -x
 
-branch="v1.2.4"
+branch="v1.6.1"
 github_url="https://raw.githubusercontent.com/kubernetes/kubernetes/${branch}"
 
 # get dns templates
