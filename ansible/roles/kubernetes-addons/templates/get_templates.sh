@@ -19,6 +19,7 @@ set -x
 branch="master"
 github_url="https://raw.githubusercontent.com/kubernetes/kubernetes/${branch}"
 
+
 # get dns templates
 dir="dns"
 mkdir -p $dir

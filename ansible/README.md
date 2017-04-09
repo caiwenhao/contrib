@@ -1,11 +1,10 @@
 # Kubernetes Ansible
 
-This playbook and set of roles set up a Kubernetes cluster onto machines. They
-can be real hardware, VMs, things in a public cloud, etc. Anything that you can connect to via SSH.
+目前只支持centos 7.x 二进制文件部署,
 
 ## Before starting
 
-* Record the IP address/hostname of which machine you want to be your master (only support a single master)
+* 支持单master部署
 * Record the IP address/hostname of the machine you want to be your etcd server (often same as master, only one)
 * Record the IP addresses/hostname of the machines you want to be your nodes. (the master can also be a node)
 * Make sure your ansible running machine has ansible 1.9 and python-netaddr installed.
@@ -137,3 +136,17 @@ By changing the `networking` variable in the `inventory/group_vars/all.yml` file
 * When updating flannel to version `0.5.5-7` or higher on Fedora, the `/etc/sysconfig/flannel` configuration file (if changed) must be updated to reflect renamed systemd environment variables.
 
 [![Analytics](https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/contrib/ansible/README.md?pixel)]()
+
+
+
+
+
+### storageclasses for rbd
+
+https://github.com/kubernetes/kubernetes/tree/5ef8148b5e52be453eecaa39bad9a3b8454e9570/examples/persistent-volume-provisioning
+```sh
+ceph tell 'mon.*' injectargs "--mon_pg_warn_max_per_osd 0" 
+sudo ceph auth get-key client.admin | base64
+sudo ceph auth get-key client.kube | base64
+```
+
