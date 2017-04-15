@@ -23,7 +23,17 @@ github_url="https://raw.githubusercontent.com/kubernetes/kubernetes/${branch}"
 # get dns templates
 dir="dns"
 mkdir -p $dir
-for filename in skydns-rc.yaml skydns-svc.yaml; do
+for filename in kubedns-cm.yaml kubedns-sa.yaml ; do
+    filepath="${dir}/${filename}.j2"
+    curl -Lfo ${filepath} "${github_url}/cluster/addons/dns/${filename}"
+    sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
+done
+for filename in dns-horizontal-autoscaler.yaml ; do
+    filepath="${dir}/${filename}.j2"
+    curl -Lfo ${filepath} "${github_url}/cluster/addons/dns-horizontal-autoscaler/${filename}"
+    sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
+done
+for filename in kubedns-controller.yaml kubedns-svc.yaml ; do
     filepath="${dir}/${filename}.j2"
     curl -Lfo ${filepath} "${github_url}/cluster/addons/dns/${filename}.in"
     sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
@@ -37,8 +47,6 @@ for filename in grafana-service.yaml heapster-controller.yaml heapster-service.y
     curl -Lfo ${filepath} "${github_url}/cluster/addons/cluster-monitoring/influxdb/${filename}"
     sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
 done
-# remove some saltstack templating
-sed -i "/{%/d" ${dir}/heapster-controller.yaml.j2
 
 # get cluster logging
 dir="cluster-logging"
@@ -51,8 +59,23 @@ done
 # get kube dash
 dir="kube-dash"
 mkdir -p $dir
-for filename in kube-dash-rc.yaml kube-dash-svc.yaml; do
+for filename in dashboard-controller.yaml dashboard-service.yaml; do
     filepath="${dir}/${filename}.j2"
-    curl -Lfo ${filepath} "https://raw.githubusercontent.com/kubernetes/kubedash/master/deploy/${filename}"
+    curl -Lfo ${filepath} "${github_url}/cluster/addons/dashboard/${filename}"
 done
 
+# get kube dash
+dir="kube-dash"
+mkdir -p $dir
+for filename in dashboard-controller.yaml dashboard-service.yaml; do
+    filepath="${dir}/${filename}.j2"
+    curl -Lfo ${filepath} "${github_url}/cluster/addons/dashboard/${filename}"
+done
+
+# get node-problem-detector
+dir="node-problem-detector"
+mkdir -p $dir
+for filename in node-problem-detector.yaml; do
+    filepath="${dir}/${filename}.j2"
+    curl -Lfo ${filepath} "https://raw.githubusercontent.com/kubernetes/node-problem-detector/master/${filename}"
+done
