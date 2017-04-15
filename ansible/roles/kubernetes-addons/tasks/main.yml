@@ -25,9 +25,6 @@
 - include: cluster-logging.yml
   when: cluster_logging
 
-- include: kube-ui.yml
-  when: kube_ui
-
 - include: kube-dash.yml
   when: kube_dash
 

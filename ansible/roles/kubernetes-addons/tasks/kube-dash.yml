@@ -11,5 +11,5 @@
     owner: root
     group: root
   with_items:
-    - kube-dash-rc.yaml
-    - kube-dash-svc.yaml
+    - dashboard-controller.yaml
+    - dashboard-service.yaml

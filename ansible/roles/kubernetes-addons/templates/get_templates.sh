@@ -48,7 +48,7 @@ done
 # get cluster logging
 dir="cluster-logging"
 mkdir -p $dir
-for filename in es-controller.yaml es-service.yaml kibana-controller.yaml kibana-service.yaml; do
+for filename in es-controller.yaml es-service.yaml kibana-controller.yaml kibana-service.yaml fluentd-es-ds.yaml; do
     filepath="${dir}/${filename}.j2"
     curl -Lfo ${filepath} "${github_url}/cluster/addons/fluentd-elasticsearch/${filename}"
 done
