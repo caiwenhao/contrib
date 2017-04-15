@@ -26,17 +26,15 @@ mkdir -p $dir
 for filename in kubedns-cm.yaml kubedns-sa.yaml ; do
     filepath="${dir}/${filename}.j2"
     curl -Lfo ${filepath} "${github_url}/cluster/addons/dns/${filename}"
-    sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
 done
 for filename in dns-horizontal-autoscaler.yaml ; do
     filepath="${dir}/${filename}.j2"
     curl -Lfo ${filepath} "${github_url}/cluster/addons/dns-horizontal-autoscaler/${filename}"
-    sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
 done
 for filename in kubedns-controller.yaml kubedns-svc.yaml ; do
     filepath="${dir}/${filename}.j2"
     curl -Lfo ${filepath} "${github_url}/cluster/addons/dns/${filename}.in"
-    sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
+    sed -i "" "s/pillar\['\(.*\)'\]/\1/g" $filepath
 done
 
 # get cluster monitoring
