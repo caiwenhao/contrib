@@ -76,3 +76,9 @@ for filename in node-problem-detector.yaml; do
     filepath="${dir}/${filename}.j2"
     curl -Lfo ${filepath} "https://raw.githubusercontent.com/kubernetes/node-problem-detector/master/${filename}"
 done
+
+sed -i '' 's/gcr.io/{{registry_hub}}/g' dns/*
+sed -i '' 's/gcr.io/{{registry_hub}}/g' cluster-monitoring/*
+sed -i '' 's/gcr.io/{{registry_hub}}/g' cluster-logging/*
+sed -i '' 's/gcr.io/{{registry_hub}}/g' kube-dash/*
+sed -i '' 's/gcr.io/{{registry_hub}}/g' node-problem-detector/*
