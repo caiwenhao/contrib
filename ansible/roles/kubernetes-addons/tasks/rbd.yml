@@ -1,0 +1,18 @@
+---
+- name: rbd | Assures {{ kube_addons_dir }}/rbd dir exists
+  file: path={{ kube_addons_dir }}/rbd state=directory
+
+- name: rbd | Copy rbd manifests to master
+  template:
+  args:
+    src: "rbd/{{ item }}.j2"
+    dest: "{{ kube_addons_dir }}/rbd/{{ item }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - ceph-secret-admin.yaml
+    - ceph-secret-user.yaml
+    - claim1-pvc.yaml
+    - pod.yaml
+    - rbd-storage-class.yaml

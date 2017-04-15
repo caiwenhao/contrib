@@ -27,3 +27,5 @@
 
 - include: kube-dash.yml
   when: kube_dash
+
+- include: rbd.yml
