@@ -43,7 +43,6 @@ mkdir -p $dir
 for filename in grafana-service.yaml heapster-controller.yaml heapster-service.yaml influxdb-grafana-controller.yaml influxdb-service.yaml; do
     filepath="${dir}/${filename}.j2"
     curl -Lfo ${filepath} "${github_url}/cluster/addons/cluster-monitoring/influxdb/${filename}"
-    sed -i "s/pillar\['\(.*\)'\]/\1/g" $filepath
 done
 
 # get cluster logging
