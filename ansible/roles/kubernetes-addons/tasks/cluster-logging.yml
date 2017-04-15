@@ -16,3 +16,4 @@
     - kibana-controller.yaml
     - kibana-service.yaml
     - fluentd-es-ds.yaml
+    - es-statefulsets.yaml
