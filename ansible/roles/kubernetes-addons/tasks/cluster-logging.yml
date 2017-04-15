@@ -11,8 +11,6 @@
     owner: root
     group: root
   with_items:
-    - es-controller.yaml
-    - es-service.yaml
     - kibana-controller.yaml
     - kibana-service.yaml
     - fluentd-es-ds.yaml
