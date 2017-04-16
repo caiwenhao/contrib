@@ -1,0 +1,15 @@
+---
+- name: ingress | Assures {{ kube_addons_dir }}/ingress dir exists
+  file: path={{ kube_addons_dir }}/ingress state=directory
+
+- name: ingress | Install Template from converted saltfiles
+  template:
+  args:
+    src: "ingress/{{ item }}.j2"
+    dest: "{{ kube_addons_dir }}/ingress/{{ item }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+  - default-backend.yaml
+  - nginx-ingress-daemonset.yaml
