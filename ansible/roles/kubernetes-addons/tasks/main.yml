@@ -29,3 +29,5 @@
   when: kube_dash
 
 - include: rbd.yml
+
+- include: node-problem-detector.yml

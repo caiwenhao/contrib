@@ -1,0 +1,29 @@
+---
+- name: LOGGING | Assures {{ kube_addons_dir }}/node-problem-detector dir exists
+  file: path={{ kube_addons_dir }}/node-problem-detector state=directory
+
+- name: LOGGING | Copy node-problem-detector manifests to master
+  template:
+  args:
+    src: "node-problem-detector/{{ item }}.j2"
+    dest: "{{ kube_addons_dir }}/node-problem-detector/{{ item }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - node-problem-detector.yaml
+
+- name: LOGGING | Assures {{ kube_addons_dir }}/node-problem-detector/config dir exists
+  file: path={{ kube_addons_dir }}/node-problem-detector/config state=directory
+
+- name: LOGGING | Copy node-problem-detector/config manifests to master
+  template:
+  args:
+    src: "node-problem-detector/config/{{ item }}.j2"
+    dest: "{{ kube_addons_dir }}/node-problem-detector/config/{{ item }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - docker-monitor-filelog.json
+    - kernel-monitor-filelog.json
