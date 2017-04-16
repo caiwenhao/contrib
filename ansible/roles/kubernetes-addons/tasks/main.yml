@@ -31,3 +31,5 @@
 - include: rbd.yml
 
 - include: node-problem-detector.yml
+
+- include: ingress.yml
