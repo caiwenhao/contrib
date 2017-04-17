@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8s-new
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  namespace: kube-system
+spec:
+  rules:
+  - host: k8s-new.lifesense.com
+    http:
+      paths:
+      - path: /kubernetes-dashboard
+        backend:
+          serviceName: kubernetes-dashboard
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: k8s-kibana
+spec:
+  rules:
+  - host: k8s-kibana.lifesense.com
+    http:
+      paths:
+      - backend:
+          serviceName: kibana-logging
+          servicePort: 5601
