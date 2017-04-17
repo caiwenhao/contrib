@@ -41,5 +41,3 @@
     - "{{ kube_cert_dir }}/ca.crt"
     - "{{ kube_cert_dir }}/server.crt"
     - "{{ kube_cert_dir }}/server.key"
-    - "{{ kube_cert_dir }}/kubecfg.crt"
-    - "{{ kube_cert_dir }}/kubecfg.key"

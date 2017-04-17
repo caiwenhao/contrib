@@ -5,9 +5,6 @@
     - secrets
     - configure
 
-- name: config dns
-  template: src=resolv.conf.j2 dest=/etc/resolv.conf
-
 - name:
   file: path=/data/logs state=directory
 

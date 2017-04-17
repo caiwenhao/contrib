@@ -117,12 +117,8 @@ cp -p pki/ca.crt "${cert_dir}/ca.crt"
 cp -p pki/private/ca.key "${cert_dir}/ca.key"
 cp -p "pki/issued/${master_name}.crt" "${cert_dir}/server.crt"
 cp -p "pki/private/${master_name}.key" "${cert_dir}/server.key"
-cp -p pki/issued/kubecfg.crt "${cert_dir}/kubecfg.crt"
-cp -p pki/private/kubecfg.key "${cert_dir}/kubecfg.key"
-cp -p pki/issued/kubelet.crt "${cert_dir}/kubelet.crt"
-cp -p pki/private/kubelet.key "${cert_dir}/kubelet.key"
 
-CERTS=("ca.crt" "server.key" "server.crt" "kubelet.key" "kubelet.crt" "kubecfg.key" "kubecfg.crt")
+CERTS=("ca.crt" "ca.key" "server.key" "server.crt")
 for cert in "${CERTS[@]}"; do
   chgrp "${cert_group}" "${cert_dir}/${cert}"
   chmod 660 "${cert_dir}/${cert}"
