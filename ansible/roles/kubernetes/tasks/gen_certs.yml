@@ -39,5 +39,6 @@
     mode=0440
   with_items:
     - "{{ kube_cert_dir }}/ca.crt"
+    - "{{ kube_cert_dir }}/ca.key"
     - "{{ kube_cert_dir }}/server.crt"
     - "{{ kube_cert_dir }}/server.key"
