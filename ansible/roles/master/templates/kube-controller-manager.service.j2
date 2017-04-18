@@ -11,7 +11,9 @@ ExecStart={{kube_script_dir}}/kube-controller-manager   ${KUBE_LOGTOSTDERR} \
                                 ${KUBE_CONTROLLER_MANAGER_ROOT_CA_FILE} \
                                 ${KUBE_CONTROLLER_MANAGER_SERVICE_ACCOUNT_PRIVATE_KEY_FILE}\
                                 ${KUBE_LEADER_ELECT} \
-                                ${KUBECONFIG}
+                                ${KUBECONFIG}        \
+                                ${CLUSTER_SIGNING_CERT_FILE}        \
+                                ${CLUSTER_SIGNING_KEY_FILE}
 Restart=on-failure
 
 [Install]

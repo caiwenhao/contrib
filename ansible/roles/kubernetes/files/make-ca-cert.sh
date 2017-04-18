@@ -105,8 +105,8 @@ if ! (./easyrsa --batch init-pki
       # Since the length of CN is limited to 64 bytes, here we cut too long ${cert_ip}
       ./easyrsa --batch "--req-cn=$(echo ${cert_ip} | cut -b 1-$(expr 64 - $(echo @$(date +%s) | wc -c)))@$(date +%s)" build-ca nopass
       ./easyrsa --batch --subject-alt-name="${sans}" build-server-full "${master_name}" nopass
-      ./easyrsa --batch build-client-full kubelet nopass
-      ./easyrsa --batch build-client-full kubecfg nopass) >/dev/null 2>&1; then
+      ./easyrsa --batch --dn-mode=org --req-cn=system:kube-proxy build-client-full kube-proxy nopass
+      ./easyrsa --batch --dn-mode=org --req-cn=admin --req-org=system:masters build-client-full admin nopass) >/dev/null 2>&1; then
     echo "=== Failed to generate certificates: Aborting ===" 1>&2
     exit 2
 fi

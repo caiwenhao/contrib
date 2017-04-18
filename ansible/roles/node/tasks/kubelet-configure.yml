@@ -8,7 +8,7 @@
     - restart kubelet
 
 - name: Write the kubecfg (auth) file for kubelet
-  template: src=kubelet.kubeconfig.j2 dest={{ kube_config_dir }}/kubelet.kubeconfig
+  template: src=kubelet.kubeconfig.j2 dest={{ kube_config_dir }}/bootstrap.kubeconfig
 
 - name: Make sure manifest directory exists
   file: path={{ kube_manifest_dir }} state=directory

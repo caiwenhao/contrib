@@ -28,3 +28,8 @@ KUBELET_DNS_DOMAIN="--cluster-domain={{dns_domain}}"
 # Add your own!
 KUBECONFIG="--kubeconfig={{ kube_config_dir }}/kubelet.kubeconfig"
 KUBELET_ARGS="--pod-infra-container-image={{registry_hub}}/google_containers/pause-amd64:3.0"
+
+#TLS bootstrap
+EXPERIMENTAL_BOOTSTRAP_KUBECONFIG="--experimental-bootstrap-kubeconfig={{ kube_config_dir }}/bootstrap.kubeconfig"
+CERT_DIR="--cert-dir={{kube_cert_dir}}/"
+REQUIRE_KUBECONFIG="--require-kubeconfig"
