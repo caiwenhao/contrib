@@ -31,3 +31,18 @@
   delegate_to: "{{ groups['masters'][0] }}"
 
 
+- name: Read back the tokens
+  slurp:
+    src: "{{ kube_cert_dir }}/tokens/known_tokens.csv"
+  register: master_tokens
+  run_once: true
+  delegate_to: "{{ groups['masters'][0] }}"
+
+- name: Register the tokens as a fact so it can be used later
+  set_fact:
+    kube_tokens_key: "{{ master_tokens.content }}"
+
+- name: Place tokens everywhere
+  copy: content="{{ kube_tokens_key }}" dest="{{ kube_cert_dir }}/tokens/known_tokens.csv"
+  when: inventory_hostname in groups['masters']
+
