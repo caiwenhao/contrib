@@ -7,7 +7,7 @@ kube_config_dir: /opt/kubernetes/cfg
 
 kube_cert_group: kube-cert
 kube_cert_dir: "/srv/kubernetes"
-kube_cert_ip: "{{ hostvars[inventory_hostname]['ansible_all_ipv4_addresses'] | join (',IP:') }}"
+kube_cert_ip: "{{ groups['masters'] | join (',IP:') }}"
 kube_token_dir: "{{ kube_cert_dir }}/tokens"
 dns_domain: "{{ cluster_name }}"
 dns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(10)|ipaddr('address') }}"

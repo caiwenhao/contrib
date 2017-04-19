@@ -33,6 +33,7 @@ set -o pipefail
 # CERT_GROUP - who the group owner of the cert files should be
 
 cert_ip="${MASTER_IP:="${1}"}"
+vip="${MASTER_VIP:="${2}"}"
 master_name="${MASTER_NAME:="kubernetes"}"
 service_range="${SERVICE_CLUSTER_IP_RANGE:="10.0.0.0/16"}"
 dns_domain="${DNS_DOMAIN:="cluster.local"}"
@@ -94,7 +95,7 @@ octets=($(echo "${service_range}" | sed -e 's|/.*||' -e 's/\./ /g'))
 service_ip=$(echo "${octets[*]}" | sed 's/ /./g')
 
 # Determine appropriete subject alt names
-sans="IP:${cert_ip},IP:${service_ip},DNS:kubernetes,DNS:kubernetes.default,DNS:kubernetes.default.svc,DNS:kubernetes.default.svc.${dns_domain},DNS:${master_name}"
+sans="IP:${cert_ip},IP:${service_ip},IP:${vip},DNS:kubernetes,DNS:kubernetes.default,DNS:kubernetes.default.svc,DNS:kubernetes.default.svc.${dns_domain},DNS:${master_name}"
 
 curl -sSL -O https://storage.googleapis.com/kubernetes-release/easy-rsa/easy-rsa.tar.gz
 tar xzf easy-rsa.tar.gz
