@@ -16,15 +16,12 @@
   tags: configure
 
 
-
 - name: Configure controller-manager
   include: controller-manager-configure.yml
   tags: configure
 
 - name: Start controller-manager
   include: controller-manager-start.yml
-
-
 
 
 - name: Configure scheduler
@@ -68,3 +65,6 @@
   include: scheduler-restart.yml
   when: scheduler_modified == true and scheduler_started.changed == false
   tags: restart
+
+- name: set vip
+  include: vip-configure.yml

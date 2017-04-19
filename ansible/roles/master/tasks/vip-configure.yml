@@ -1,0 +1,6 @@
+- name: Write the config files for keepalived
+  template: src=ifcfg-lo.j2 dest=/etc/sysconfig/network-scripts/ifcfg-lo:1
+
+- name: ifup lo:1
+  command: "ifup lo:1"
+  ignore_errors: yes
