@@ -5,6 +5,9 @@ kube_master_insecure_port: 8080
 kube_script_dir: /opt/kubernetes/bin
 kube_config_dir: /opt/kubernetes/cfg
 
+
+kube_master_vip: "{{ groups['vip'][0] }}"
+
 kube_cert_group: kube-cert
 kube_cert_dir: "/srv/kubernetes"
 kube_cert_ip: "{{ groups['masters'] | join (',IP:') }}"
