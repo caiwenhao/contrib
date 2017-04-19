@@ -16,7 +16,7 @@ NODE_HOSTNAME="--hostname-override={{ansible_default_ipv4.address}}"
 
 # --api-servers=[]: List of Kubernetes API servers for publishing events,
 # and reading pods and services. (ip:port), comma separated.
-KUBELET_API_SERVER="--api-servers=https://{{ groups['masters'][0] }}:{{ kube_master_api_port }}"
+KUBELET_API_SERVER="--api-servers=https://{{ kube_master_vip }}:{{ kube_master_api_port }}"
 
 # --allow-privileged=false: If true, allow containers to request privileged mode. [default=false]
 KUBE_ALLOW_PRIV="--allow-privileged=false"
