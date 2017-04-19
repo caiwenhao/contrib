@@ -16,6 +16,7 @@
   changed_when: "'Added' in gentoken.stdout"
   notify:
     - restart daemons
+  delegate_to: "{{ groups['masters'][0] }}"
 
 - name: Generate tokens for node components
   command: "{{ kube_script_dir }}/kube-gen-token.sh {{ item }}"
@@ -27,3 +28,6 @@
   changed_when: "'Added' in gentoken.stdout"
   notify:
     - restart daemons
+  delegate_to: "{{ groups['masters'][0] }}"
+
+
