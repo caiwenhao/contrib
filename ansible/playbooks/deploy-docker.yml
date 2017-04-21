@@ -1,6 +1,6 @@
 ---
 # Install docker
-- hosts: all
+- hosts: nodes
   become: yes
   roles:
     - common
