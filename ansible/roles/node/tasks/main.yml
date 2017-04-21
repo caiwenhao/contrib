@@ -39,3 +39,7 @@
   include: proxy-restart.yml
   when: proxy_modified == true and proxy_started.changed == false
   tags: restart
+
+- name: docker pull pause-amd64:3.0
+  command: "{{registry_hub}}/google_containers/pause-amd64:3.0"
+
