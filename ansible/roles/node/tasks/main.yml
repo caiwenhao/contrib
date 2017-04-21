@@ -41,5 +41,5 @@
   tags: restart
 
 - name: docker pull pause-amd64:3.0
-  command: "docker pull {{registry_hub}}/google_containers/pause-amd64:3.0"
+  command: "/usr/local/bin/docker pull {{registry_hub}}/google_containers/pause-amd64:3.0"
 
