@@ -10,3 +10,6 @@
 
 - name:
   file: path="{{kube_logs_directory}}" state=directory
+
+- name: install ceph-common
+  include: ceph-common.yml

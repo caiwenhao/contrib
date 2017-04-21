@@ -68,3 +68,6 @@
 
 - name: set vip
   include: vip-configure.yml
+
+- name: source <(kubectl completion bash)
+  include: master-configure.yml

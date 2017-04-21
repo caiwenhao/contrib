@@ -1,0 +1,11 @@
+- name: yum install bash-completion
+  yum: name={{ item }} state=present
+  with_items:
+   - bash-completion
+
+- name: source <(kubectl completion bash)
+  lineinfile:
+    dest=/root/.bashrc
+    state=present
+    regexp='^source <(kubectl completion bash)'
+    line='source <(kubectl completion bash)'
