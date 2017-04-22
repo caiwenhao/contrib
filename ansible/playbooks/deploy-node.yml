@@ -3,6 +3,8 @@
   hosts: nodes
   become: yes
   roles:
+    - flannel
+    - docker
     - node
   tags:
     - nodes
