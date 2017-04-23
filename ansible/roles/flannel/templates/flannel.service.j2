@@ -2,6 +2,7 @@
 Description=Flanneld overlay address etcd agent
 After=network.target
 Before=docker.service
+Requires=NetworkManager.service
 
 [Service]
 Type=notify

@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: confluence
+spec:
+  rules:
+  - host: confluence.lifesense.com
+    http:
+      paths:
+      - backend:
+          serviceName: confluence
+          servicePort: 8090
