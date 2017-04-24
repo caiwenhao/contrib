@@ -1,37 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: confluence-mysql
+  name: confluence
   namespace: ops
   labels:
-    ops-app: confluence-mysql
+    ops-app: confluence
 spec:
   selector:
-    ops-app: confluence-mysql
+    ops-app: confluence
   ports:
     - name: mysql
       port: 3306
       targetPort: 3306
-
----
-kind: Endpoints
-apiVersion: v1
-metadata:
-  name: confluence
-  namespace: ops
-subsets:
-  - addresses:
-      - ip: 10.9.107.219
-    ports:
-      - port: 8090
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: confluence
-  namespace: ops
-spec:
-  ports:
-    - protocol: TCP
-      port: 80
+    - name: confluence
+      port: 8090
       targetPort: 8090

@@ -1,31 +1,60 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: confluence-mysql-v5.6
+  name: confluence-postgresql-v6.1.2
   namespace: ops
   labels:
-    ops-app: confluence-mysql
+    ops-app: confluence-postgresql
+    version: v6.1.2
 spec:
-  strategy:
-    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      ops-app: confluence-postgresql
+      version: v6.1.2
   template:
     metadata:
       labels:
-        ops-app: confluence-mysql
+        ops-app: confluence-postgresql
+        version: v6.1.2
     spec:
       containers:
-      - image: 10.10.185.222/mysql:5.6
-        name: mysql
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: WUmhugJbNzefe6Vt
-        ports:
-        - containerPort: 3306
+        - image: 10.10.185.222/confluence:6.1.2
+          name: confluence
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 2000Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 8090
+          volumeMounts:
+          - name: confluence-persistent-storage
+            mountPath: /usr/local/atlassian/confluence-data
+        - image: 10.10.185.222/mysql:5.6
           name: mysql
-        volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+          env:
+          resources:
+            limits:
+              cpu: 100m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: WUmhugJbNzefe6Vt
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
       volumes:
+      - name: confluence-persistent-storage
+        persistentVolumeClaim:
+          claimName: confluence-data
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: confluence-mysql
