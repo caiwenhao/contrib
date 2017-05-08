@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: lifesenselimits
+spec:
+  limits:
+  - max:
+      cpu: "2"
+      memory: 2Gi
+    min:
+      cpu: 200m
+      memory: 100Mi
+    type: Pod
+  - default:
+      cpu: 500m
+      memory: 500Mi
+    defaultRequest:
+      cpu: 100m
+      memory: 50Mi
+    max:
+      cpu: "2"
+      memory: 1Gi
+    min:
+      cpu: 100m
+      memory: 50Mi
+    type: Container

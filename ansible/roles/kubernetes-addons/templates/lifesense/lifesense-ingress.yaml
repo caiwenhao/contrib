@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: lifesense-rest
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: sports-qa2.lifesense.com
+    http:
+      paths:
+      - path: /sport_service
+        backend:
+          serviceName: sport-svc
+          servicePort: 8080
