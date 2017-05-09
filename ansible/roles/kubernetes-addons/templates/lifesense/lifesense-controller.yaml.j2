@@ -2,17 +2,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: sport-services-rest
+  name: {{item.name}}-services-rest
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: sport-services-rest
+        app: {{item.name}}-services-rest
     spec:
       containers:
-      - name: sport-services-rest
-        image: 10.10.185.222/rest/sport-services:develop_35ce277_156
+      - name: {{item.name}}-services-rest
+        image: 10.10.185.222/rest/{{item.name}}-services:develop_35ce277_156
         env:
         - name: DISCONF_ENV
           valueFrom:
@@ -59,17 +59,17 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: sport-services-soa
+  name: {{item.name}}-services-soa
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: sport-services-soa
+        app: {{item.name}}-services-soa
     spec:
       containers:
-      - name: sport-services-soa
-        image: 10.10.185.222/soa/sport-services:develop_35ce277_156
+      - name: {{item.name}}-services-soa
+        image: 10.10.185.222/soa/{{item.name}}-services:develop_35ce277_156
         env:
         - name: DISCONF_ENV
           valueFrom:
