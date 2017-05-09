@@ -28,6 +28,7 @@
 
 - name:
   template: src="lifesense/rest-service.yaml.j2" dest="{{ kube_addons_dir }}/lifesense/svc/{{item.name}}-svc.yaml"
+  when: item.rest
   with_items: "{{soa}}"
   tags: k8s-config
 
