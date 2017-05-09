@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  DISCONF_ENV: "lifesense-qa2"
+  DISCONF_ENV: "{{lifesense_env}}"
   TingYun: "false"
   OPTS: "-Dlog.level=debug"

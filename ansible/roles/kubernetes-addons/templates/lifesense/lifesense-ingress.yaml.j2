@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: lifesense-rest
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: sports-qa.lifesense.com,health-qa.lifesense.com
+    http:
+      paths:
+{% for item in soa %}
+{% if item.rest %}
+      - path: /{{item.name}}_service
+        backend:
+          serviceName: {{item.name}}-svc
+          servicePort: 8080
+{% endif %}          
+{% endfor %}      

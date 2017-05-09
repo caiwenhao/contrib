@@ -28,3 +28,5 @@
 - include: node-problem-detector.yml
 
 - include: ingress.yml
+
+- include: lifesense.yml

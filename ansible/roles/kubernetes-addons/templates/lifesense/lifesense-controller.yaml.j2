@@ -1,3 +1,4 @@
+{% if item.rest %}
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -52,3 +53,51 @@ spec:
         - containerPort: 8080
           name: http
           protocol: TCP
+{% endif %}
+{% if item.dubbo %}
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: sport-services-soa
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sport-services-soa
+    spec:
+      containers:
+      - name: sport-services-soa
+        image: 10.10.185.222/soa/sport-services:develop_35ce277_156
+        env:
+        - name: DISCONF_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: DISCONF_ENV
+        - name: TingYun
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: TingYun
+        - name: OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: OPTS
+        livenessProbe:
+          exec:
+            command:
+            - /data/apps/livenessProbe
+            - check_dubbo
+          initialDelaySeconds: 600
+          timeoutSeconds: 30
+          successThreshold: 1
+          failureThreshold: 3
+        ports:
+        - containerPort: 20882
+          name: dubbo
+          protocol: TCP
+      restartPolicy: OnFailure
+{% endif %}      
