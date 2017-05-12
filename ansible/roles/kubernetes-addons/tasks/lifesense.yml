@@ -18,8 +18,12 @@
   template: src="lifesense/lifesense-ns.yaml" dest="{{ kube_addons_dir }}/lifesense/{{lifesense_env}}/lifesense-ns.yaml"
   tags: k8s-config
 
+- name: lifesense | Assures {{ kube_addons_dir }}/lifesense/ingress dir exists
+  file: path={{ kube_addons_dir }}/lifesense/ingress state=directory
+  tags: k8s-config
+
 - name:
-  template: src="lifesense/lifesense-ingress.yaml" dest="{{ kube_addons_dir }}/lifesense/{{item}}-ingress.yaml"
+  template: src="lifesense/lifesense-ingress.yaml" dest="{{ kube_addons_dir }}/lifesense/ingress/{{item}}-ingress.yaml"
   with_items:
   - "health-qa.lifesense.com"
   - "sports-qa.lifesense.com"
