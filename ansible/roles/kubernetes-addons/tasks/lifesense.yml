@@ -42,6 +42,6 @@
   tags: k8s-config
 
 - name:
-  template: src="lifesense/lifesense-controller.yaml.j2" dest="{{ kube_addons_dir }}/lifesense/soa/{{item.name}}-controller.yaml"
+  template: src="lifesense/lifesense-controller.yaml" dest="{{ kube_addons_dir }}/lifesense/soa/{{item.name}}-controller.yaml"
   with_items: "{{soa}}"
   tags: k8s-config
