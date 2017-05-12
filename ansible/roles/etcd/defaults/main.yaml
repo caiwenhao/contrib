@@ -8,9 +8,9 @@ etcd_script_dir: /opt/kubernetes/bin
 etcd_data_dir: /var/lib/etcd
 
 #etcd_download_url_base: "https://github.com/coreos/etcd/releases/download/v{{ etcd_version }}"
-etcd_download_url_base: "https://okxzghmxw.bkt.clouddn.com/coreos/etcd/releases/download/v{{ etcd_version }}"
-etcd_download_url: "{{ etcd_download_url_base }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz"
-
+#etcd_download_url_base: "http://okxzghmxw.bkt.clouddn.com/coreos/etcd/releases/download/v{{ etcd_version }}"
+#etcd_download_url: "{{ etcd_download_url_base }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz"
+etcd_download_url: "http://10.10.119.24/ansible/etcd-v{{etcd_version}}-linux-amd64.tar.gz"
 
 etcd_client_port: 2379
 etcd_peer_port: 2380

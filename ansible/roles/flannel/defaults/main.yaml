@@ -18,5 +18,6 @@ flannel_backend: vxlan
 
 #The default url to download the flannel tar from
 #flannel_download_url_base: "https://github.com/coreos/flannel/releases/download/v{{ flannel_version }}"
-flannel_download_url_base: "https://okxzghmxw.bkt.clouddn.com/coreos/flannel/releases/download/v{{ flannel_version }}"
-flannel_download_url: "{{ flannel_download_url_base }}/flannel-v{{ flannel_version }}-linux-amd64.tar"
+#flannel_download_url_base: "https://okxzghmxw.bkt.clouddn.com/coreos/flannel/releases/download/v{{ flannel_version }}"
+#lannel_download_url: "{{ flannel_download_url_base }}/flannel-v{{ flannel_version }}-linux-amd64.tar"
+lannel_download_url: "http://10.10.119.24/ansible/flannel-v{{flannel_version}}-linux-amd64.tar"

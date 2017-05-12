@@ -4,4 +4,5 @@ docker_root_dir: "/data/docker_root"
 
 docker_version: 1.13.1
 #docker_download_url: "https://get.docker.com/builds/Linux/x86_64/docker-{{docker_version}}.tgz"
-docker_download_url: "http://okxzghmxw.bkt.clouddn.com/builds/Linux/x86_64/docker-{{docker_version}}.tgz"
+#docker_download_url: "http://okxzghmxw.bkt.clouddn.com/builds/Linux/x86_64/docker-{{docker_version}}.tgz"
+docker_download_url: "http://10.10.119.24/ansible/docker-{{docker_version}}.tgz"
