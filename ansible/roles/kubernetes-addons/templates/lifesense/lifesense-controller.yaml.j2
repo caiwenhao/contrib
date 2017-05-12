@@ -34,7 +34,7 @@ spec:
             path: /echo?requestId=k8s
             port: 8080
             scheme: HTTP
-          initialDelaySeconds: 60
+          initialDelaySeconds: 300
           timeoutSeconds: 30
           successThreshold: 1
           failureThreshold: 5
@@ -44,11 +44,11 @@ spec:
             path: /echo?requestId=k8s
             port: 8080
             scheme: HTTP
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           timeoutSeconds: 30
           successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
+          failureThreshold: 5
+          periodSeconds: 30
         ports:
         - containerPort: 8080
           name: http
@@ -95,6 +95,13 @@ spec:
           timeoutSeconds: 30
           successThreshold: 1
           failureThreshold: 3
+        readinessProbe:
+          tcpSocket:
+            port: 20882
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          failureThreshold: 5      
         ports:
         - containerPort: 20882
           name: dubbo
