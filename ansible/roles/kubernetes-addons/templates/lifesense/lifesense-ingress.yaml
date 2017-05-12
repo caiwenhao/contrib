@@ -8,7 +8,27 @@ spec:
   rules:
   - host: {{item}}
     http:
-      paths:
+      paths: 
+      - path: /sms
+        backend:
+          serviceName: sms-svc
+          servicePort: 8080    
+      - path: /commons_rest
+        backend:
+          serviceName: commons-svc
+          servicePort: 8080    
+      - path: /lxyd_admin
+        backend:
+          serviceName: wms-svc
+          servicePort: 8080           
+      - path: /devicegateway_service/data/
+        backend:
+          serviceName: devicegateway-svc
+          servicePort: 8080   
+      - path: /devicedataservice
+        backend:
+          serviceName: devicegateway-svc
+          servicePort: 8080                                 
 {% for item in soa %}
 {% if item.rest %}
       - path: /{{item.name}}_service
