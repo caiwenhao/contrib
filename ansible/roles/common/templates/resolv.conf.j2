@@ -1,0 +1,4 @@
+options timeout:1 attempts:1 ndots:5
+{% for item in dns_nameserver %}
+nameserver {{item}}      
+{% endfor %}

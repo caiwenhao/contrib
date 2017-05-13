@@ -20,3 +20,7 @@
   shell: hostname {{hostname}}
   ignore_errors: yes
   tags: env7
+
+- name:
+  template: src=resolv.conf.j2 dest=/etc/resolv.conf
+  tags: env7
