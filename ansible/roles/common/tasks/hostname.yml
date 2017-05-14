@@ -16,8 +16,8 @@
   lineinfile: dest=/etc/hosts regexp="^{{ansible_default_ipv4.address}} {{hostname}}$" line="{{ansible_default_ipv4.address}} {{hostname}}"
   tags: env7
 
-- name: hostname {{hostname}}
-  shell: hostname {{hostname}}
+- name: hostnamectl --static set-hostname {{hostname}}
+  shell: hostnamectl --static set-hostname {{hostname}}
   ignore_errors: yes
   tags: env7
 
